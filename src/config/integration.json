@@ -1,0 +1,41 @@
+{
+    "data": {
+      "descriptions": {
+        "app_name": "API Rate Limiter Monitor",
+        "app_description": "Tracks API usage against rate limits and flags potential throttling risks.",
+        "app_url": "http://localhost:3000",
+        "app_logo": "https://example.com/logo.png",
+        "background_color": "#ffffff"
+      },
+      "integration_type": "interval",
+      "integration_category": "Application Insight",
+      "settings": [
+        {
+          "label": "API Endpoint",
+          "type": "text",
+          "required": true,
+          "default": "https://api.example.com/endpoint"
+        },
+        {
+          "label": "API Key",
+          "type": "text",
+          "required": true,
+          "default": ""
+        },
+        {
+          "label": "Rate Limit",
+          "type": "number",
+          "required": true,
+          "default": 1000
+        },
+        {
+          "label": "Interval",
+          "type": "text",
+          "required": true,
+          "default": "*/5 * * * *"
+        }
+      ],
+      "tick_url": "http://localhost:3000/tick"
+    }
+  }
+  
