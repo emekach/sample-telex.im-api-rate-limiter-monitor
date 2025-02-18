@@ -1,0 +1,8 @@
+{
+  "version": 2,
+  "builds": [{ "src": "src/routes/*.js", "use": "@vercel/node" }],
+  "routes": [
+    { "src": "/tick", "dest": "/src/routes/tickRouter" },
+    { "src": "/integration.json", "dest": "/src/routes/index" }
+  ]
+}
