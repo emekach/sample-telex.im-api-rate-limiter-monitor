@@ -4,7 +4,9 @@ const path = require('path');
 
 const router = express.Router();
 
-module.exports = (req, res) => {
-  res.sendFile(path.resolve('../config/integration.json'));
-};
+// Serve integration.json
+router.get('/integration.json', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '../config/integration.json'));
+});
+
 module.exports = router;
