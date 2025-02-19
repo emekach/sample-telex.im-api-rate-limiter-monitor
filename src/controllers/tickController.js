@@ -2,48 +2,86 @@ const axios = require('axios');
 const { fetchApiUsage } = require('../service/apiService');
 const logger = require('../utils/logger');
 
-// Main function to process each tick
 const processTick = async (req, res) => {
   try {
     const { channel_id, return_url, settings } = req.body;
 
-    // Log incoming data for debugging purposes
     logger.info('Received request body:', req.body);
 
-    // Extract settings values using destructuring and fallback defaults
-    const apiEndpoint =
-      settings.find((s) => s.label === 'API Endpoint')?.default || '';
-    const apiKey = settings.find((s) => s.label === 'API Key')?.default || '';
-    const rateLimit =
-      parseInt(settings.find((s) => s.label === 'Rate Limit')?.default, 10) ||
-      1000;
+    const apiEndpointSetting = settings.find((s) => s.label === 'API Endpoint');
+    const rateLimitSetting = settings.find((s) => s.label === 'Rate Limit');
 
-    // Check for required settings
-    if (!apiEndpoint || !apiKey) {
+    const apiEndpoint = apiEndpointSetting?.default || null;
+    const rateLimit = parseInt(rateLimitSetting?.default, 10) || null;
+
+    if (!apiEndpoint) {
       return res.status(400).json({
-        error: 'API Endpoint and API Key are required.',
+        error: 'API Endpoint is required and must be valid.',
       });
     }
 
-    logger.info('API Endpoint:', apiEndpoint);
-    logger.info('API Key:', apiKey);
-    logger.info('Rate Limit:', rateLimit);
-
-    // Fetch API usage from the provided endpoint
-    const usage = await fetchApiUsage(apiEndpoint, apiKey);
-    logger.info('Fetched API usage:', usage);
-
-    const remaining = rateLimit - usage;
-    logger.info('Remaining usage:', remaining);
-
-    let message = `API Usage: ${usage}/${rateLimit}. Remaining: ${remaining}.`;
-
-    // Check if we're nearing the rate limit and append a warning if so
-    if (remaining < rateLimit * 0.1) {
-      message += ' Warning: Approaching rate limit!';
+    if (!rateLimit || isNaN(rateLimit)) {
+      return res.status(400).json({
+        error: 'Rate Limit is required and must be a valid number.',
+      });
     }
 
-    // Prepare the payload to send to the Telex return URL
+    logger.info(`API Endpoint: ${apiEndpoint}`);
+    logger.info(`Rate Limit: ${rateLimit}`);
+
+    let usage, limit;
+
+    try {
+      const usageData = await fetchApiUsage(apiEndpoint);
+      usage = usageData.usage;
+      limit = usageData.limit;
+
+      if (!usage || !limit) {
+        throw new Error('Invalid API response: Missing usage or limit data.');
+      }
+
+      logger.info('Fetched API usage:', { usage, limit });
+    } catch (fetchError) {
+      logger.error('Error fetching API usage:', {
+        message: fetchError.message,
+        response: fetchError.response?.data,
+      });
+
+      // Prepare fallback payload for rate limit error
+      const fallbackPayload = {
+        message: 'Failed to fetch API usage. Possible rate limit exceeded.',
+        username: 'API Rate Limiter Monitor',
+        event_name: 'API Rate Limit Check',
+        status: 'error',
+        details:
+          fetchError.response?.data?.results?.message || fetchError.message,
+      };
+
+      try {
+        const response = await axios.post(return_url, fallbackPayload);
+        logger.info('Telex fallback response:', response.data);
+      } catch (fallbackError) {
+        logger.error('Failed to send fallback to Telex:', {
+          message: fallbackError.message,
+          response: fallbackError.response?.data,
+        });
+      }
+
+      // Send error response back to the client
+      return res.status(500).json({
+        error: 'Failed to fetch API usage.',
+        message: fetchError.message,
+      });
+    }
+
+    const remaining = limit - usage;
+
+    logger.info(`Remaining usage: ${remaining}`);
+
+    const message =
+      `API Usage: ${usage}/${limit}. Remaining: ${remaining}.` +
+      (remaining < rateLimit * 0.1 ? ' Warning: Approaching rate limit!' : '');
+
     const payload = {
       message,
       username: 'API Rate Limiter Monitor',
@@ -53,20 +91,17 @@ const processTick = async (req, res) => {
 
     logger.info('Prepared payload to send to Telex:', payload);
 
-    // Log the return_url to ensure it's correct
-    logger.info('Sending to return_url:', return_url);
-
-    // Send the message to the Telex return URL
     const response = await axios.post(return_url, payload);
     logger.info('Telex response:', response.data);
 
-    // Respond to the incoming tick request
     res.status(200).json({ message: 'Tick processed successfully.' });
   } catch (error) {
-    // Log the error for debugging purposes
-    logger.error('Error processing tick:', error);
+    logger.error('Error processing tick:', {
+      stack: error.stack,
+      message: error.message,
+      response: error.response?.data,
+    });
 
-    // Respond with a generic 500 error and include the message for debugging
     res.status(500).json({
       error: 'Internal Server Error',
       message: error.message,
@@ -74,5 +109,4 @@ const processTick = async (req, res) => {
   }
 };
 
-// Export the function to be used in other parts of the application
 module.exports = { processTick };

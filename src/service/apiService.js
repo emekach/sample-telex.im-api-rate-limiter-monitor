@@ -1,24 +1,44 @@
 const axios = require('axios');
+const logger = require('../utils/logger');
 
-const fetchApiUsage = async (endpoint) => {
+const fetchApiUsage = async (apiEndpoint) => {
   try {
-    // Fetch weather data from OpenWeather API
-    const response = await axios.get(endpoint);
+    logger.info(`Fetching API usage from: ${apiEndpoint}`);
+    const response = await axios.get(apiEndpoint);
 
-    // If rate limit exceeded, OpenWeather will return a 429 status
-    if (response.status === 429) {
-      const resetTime = response.headers['x-ratelimit-reset']; // Reset time in Unix timestamp
+    // Check if the API response contains the expected data
+    const { usage, limit } = response.data;
+    if (typeof usage !== 'number' || typeof limit !== 'number') {
       throw new Error(
-        `Rate limit exceeded. Try again after ${new Date(
-          resetTime * 1000
-        ).toISOString()}`
+        `Invalid response format: usage=${usage}, limit=${limit}`
       );
     }
 
-    // Assuming successful API response; we set usage to 1 as a placeholder (no actual usage data)
-    return 1; // This can be adjusted based on how you want to track usage
+    return { usage, limit, headers: response.headers };
   } catch (error) {
-    console.error('Error fetching API usage:', error.message);
+    const status = error.response?.status;
+    const errorData = error.response?.data;
+
+    // Specific handling for "RateLimitExceeded" error
+    if (status === 429 || errorData?.results?.code === 'RateLimitExceeded') {
+      logger.error('Rate limit exceeded:', {
+        message: errorData?.results?.message || error.message,
+        documentation: errorData?.results?.documentation || 'N/A',
+      });
+
+      throw new Error(
+        `Rate limit exceeded. Please try again later. Documentation: ${errorData?.results?.documentation}`
+      );
+    }
+
+    // General error handling
+    logger.error('Error fetching API usage:', {
+      message: error.message,
+      status,
+      errorData,
+      stack: error.stack,
+    });
+
     throw new Error('Failed to fetch API usage');
   }
 };

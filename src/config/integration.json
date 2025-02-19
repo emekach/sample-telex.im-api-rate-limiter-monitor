@@ -61,7 +61,7 @@
         "default": "* * * * *"
       }
     ],
-    "tick_url": "https://sample-telex-api-rate-limiter-monitor.onrender.com/",
+    "tick_url": "https://sample-telex-api-rate-limiter-monitor.onrender.com/tick",
     "target_url": ""
   }
 }
