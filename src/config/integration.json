@@ -5,58 +5,63 @@
       "updated_at": "2025-02-19"
     },
     "descriptions": {
-      "app_description": "Tracks API usage against rate limits and flags potential throttling risks.",
-      "app_logo": "https://example.com/logo.png",
       "app_name": "API Rate Limiter Monitor",
+      "app_description": "Tracks API usage against rate limits and flags potential throttling risks.",
+      "app_logo": "https://example.com/app_logo.png",
       "app_url": "https://sample-telex-api-rate-limiter-monitor.onrender.com/",
-      "background_color": "#FFFFFF"
+      "background_color": "#ffffff"
     },
     "integration_category": "Monitoring & Logging",
     "integration_type": "interval",
     "is_active": false,
     "output": [
-      { "label": "output_channel_1", "value": true },
-      { "label": "output_channel_2", "value": false }
+      {
+        "label": "output_channel_1",
+        "value": true
+      },
+      {
+        "label": "output_channel_2",
+        "value": false
+      }
     ],
     "key_features": [
-      "Monitors API rate limits.",
-      "Identifies potential throttling risks.",
-      "Provides configurable alert levels.",
-      "Integrates seamlessly with Telex."
+      "Monitors API usage.",
+      "Flags potential throttling risks.",
+      "Provides alerts when approaching rate limits."
     ],
     "permissions": {
       "monitoring_user": {
         "always_online": true,
-        "display_name": "Rate Limit Monitor"
+        "display_name": "API Rate Limiter Monitor"
       }
     },
     "settings": [
       {
-        "label": "interval",
-        "type": "text",
-        "required": true,
-        "default": "* * * * *"
-      },
-      {
         "label": "API Endpoint",
         "type": "text",
         "required": true,
-        "default": "https://api.openweathermap.org/data/2.5/weather?q=London&appid=3e998ff8b6cb62dac052c8ef0b974ab9"
+        "default": "https://api.example.com/usage"
       },
       {
         "label": "API Key",
         "type": "text",
         "required": true,
-        "default": "3e998ff8b6cb62dac052c8ef0b974ab9"
+        "default": "your-api-key"
       },
       {
         "label": "Rate Limit",
         "type": "number",
         "required": true,
         "default": 1000
+      },
+      {
+        "label": "Interval",
+        "type": "text",
+        "required": true,
+        "default": "* * * * *"
       }
     ],
-    "tick_url": "https://sample-telex-api-rate-limiter-monitor.onrender.com/tick",
+    "tick_url": "https://sample-telex-api-rate-limiter-monitor.onrender.com/",
     "target_url": ""
   }
 }
