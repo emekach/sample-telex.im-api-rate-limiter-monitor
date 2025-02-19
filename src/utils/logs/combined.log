@@ -27,3 +27,58 @@
 {"event_name":"API Rate Limit Check","level":"info","message":"Prepared payload to send to Telex: API Usage: [object Object]/1000. Remaining: NaN.","status":"success","timestamp":"2025-02-19T12:54:15.520Z","username":"API Rate Limiter Monitor"}
 {"level":"info","message":"Sending to return_url:","timestamp":"2025-02-19T12:54:15.520Z"}
 {"level":"info","message":"Telex response: request received","status":"success","status_code":202,"task_id":"63299955-6c9d-4ff3-8171-13b93e8b1578","timestamp":"2025-02-19T12:54:15.724Z"}
+{"level":"info","message":"Logger is working!","timestamp":"2025-02-19T12:54:55.347Z"}
+{"level":"error","message":"This is an error message.","timestamp":"2025-02-19T12:54:55.350Z"}
+{"level":"info","message":"API Rate Limiter Monitor running on port 3000","timestamp":"2025-02-19T12:54:55.357Z"}
+{"channel_id":"019518ef-cdb6-7fc4-9c70-e5d4cb647737","level":"info","message":"Received request body:","return_url":"https://ping.telex.im/v1/webhooks/019518ef-cdb6-7fc4-9c70-e5d4cb647737","settings":[{"default":"https://api.openweathermap.org/data/2.5/weather?q=London&appid=3e998ff8b6cb62dac052c8ef0b974ab9","label":"API Endpoint","type":"text"},{"default":"3e998ff8b6cb62dac052c8ef0b974ab9","label":"API Key","type":"text"},{"default":1000,"label":"Rate Limit","type":"number"}],"timestamp":"2025-02-19T12:54:58.330Z"}
+{"level":"info","message":"API Endpoint:","timestamp":"2025-02-19T12:54:58.331Z"}
+{"level":"info","message":"API Key:","timestamp":"2025-02-19T12:54:58.332Z"}
+{"level":"info","message":"Rate Limit:","timestamp":"2025-02-19T12:54:58.332Z"}
+{"level":"info","message":"Fetched API usage - Remaining: undefined, Total: undefined","timestamp":"2025-02-19T12:54:58.530Z"}
+{"level":"info","message":"Fetched API usage:","timestamp":"2025-02-19T12:54:58.533Z"}
+{"level":"info","message":"Remaining usage:","timestamp":"2025-02-19T12:54:58.534Z"}
+{"event_name":"API Rate Limit Check","level":"info","message":"Prepared payload to send to Telex: API Usage: [object Object]/1000. Remaining: NaN.","status":"success","timestamp":"2025-02-19T12:54:58.535Z","username":"API Rate Limiter Monitor"}
+{"level":"info","message":"Sending to return_url:","timestamp":"2025-02-19T12:54:58.536Z"}
+{"level":"info","message":"Telex response: request received","status":"success","status_code":202,"task_id":"2a835154-e114-42e5-b539-648460964651","timestamp":"2025-02-19T12:54:58.680Z"}
+{"level":"info","message":"Logger is working!","timestamp":"2025-02-19T12:55:17.143Z"}
+{"level":"error","message":"This is an error message.","timestamp":"2025-02-19T12:55:17.146Z"}
+{"level":"info","message":"API Rate Limiter Monitor running on port 3000","timestamp":"2025-02-19T12:55:17.152Z"}
+{"level":"info","message":"Logger is working!","timestamp":"2025-02-19T12:55:19.179Z"}
+{"level":"error","message":"This is an error message.","timestamp":"2025-02-19T12:55:19.183Z"}
+{"level":"info","message":"API Rate Limiter Monitor running on port 3000","timestamp":"2025-02-19T12:55:19.194Z"}
+{"channel_id":"019518ef-cdb6-7fc4-9c70-e5d4cb647737","level":"info","message":"Received request body:","return_url":"https://ping.telex.im/v1/webhooks/019518ef-cdb6-7fc4-9c70-e5d4cb647737","settings":[{"default":"https://api.openweathermap.org/data/2.5/weather?q=London&appid=3e998ff8b6cb62dac052c8ef0b974ab9","label":"API Endpoint","type":"text"},{"default":"3e998ff8b6cb62dac052c8ef0b974ab9","label":"API Key","type":"text"},{"default":1000,"label":"Rate Limit","type":"number"}],"timestamp":"2025-02-19T12:55:20.551Z"}
+{"level":"info","message":"API Endpoint:","timestamp":"2025-02-19T12:55:20.552Z"}
+{"level":"info","message":"API Key:","timestamp":"2025-02-19T12:55:20.553Z"}
+{"level":"info","message":"Rate Limit:","timestamp":"2025-02-19T12:55:20.553Z"}
+{"level":"info","message":"Fetched API usage:","timestamp":"2025-02-19T12:55:20.690Z"}
+{"level":"info","message":"Remaining usage:","timestamp":"2025-02-19T12:55:20.691Z"}
+{"event_name":"API Rate Limit Check","level":"info","message":"Prepared payload to send to Telex: API Usage: 1/1000. Remaining: 999.","status":"success","timestamp":"2025-02-19T12:55:20.692Z","username":"API Rate Limiter Monitor"}
+{"level":"info","message":"Sending to return_url:","timestamp":"2025-02-19T12:55:20.692Z"}
+{"level":"info","message":"Telex response: request received","status":"success","status_code":202,"task_id":"8a4b6156-73bf-47c2-8075-b1639e438037","timestamp":"2025-02-19T12:55:20.896Z"}
+{"channel_id":"019518ef-cdb6-7fc4-9c70-e5d4cb647737","level":"info","message":"Received request body:","return_url":"https://ping.telex.im/v1/webhooks/019518ef-cdb6-7fc4-9c70-e5d4cb647737","settings":[{"default":"https://api.openweathermap.org/data/2.5/weather?q=London&appid=3e998ff8b6cb62dac052c8ef0b974ab9","label":"API Endpoint","type":"text"},{"default":"3e998ff8b6cb62dac052c8ef0b974ab9","label":"API Key","type":"text"},{"default":1000,"label":"Rate Limit","type":"number"}],"timestamp":"2025-02-19T12:55:23.982Z"}
+{"level":"info","message":"API Endpoint:","timestamp":"2025-02-19T12:55:23.983Z"}
+{"level":"info","message":"API Key:","timestamp":"2025-02-19T12:55:23.984Z"}
+{"level":"info","message":"Rate Limit:","timestamp":"2025-02-19T12:55:23.984Z"}
+{"level":"info","message":"Fetched API usage:","timestamp":"2025-02-19T12:55:24.006Z"}
+{"level":"info","message":"Remaining usage:","timestamp":"2025-02-19T12:55:24.006Z"}
+{"event_name":"API Rate Limit Check","level":"info","message":"Prepared payload to send to Telex: API Usage: 1/1000. Remaining: 999.","status":"success","timestamp":"2025-02-19T12:55:24.007Z","username":"API Rate Limiter Monitor"}
+{"level":"info","message":"Sending to return_url:","timestamp":"2025-02-19T12:55:24.007Z"}
+{"level":"info","message":"Telex response: request received","status":"success","status_code":202,"task_id":"7ed9887c-a6d9-4a3c-90c3-c5c85edbdc51","timestamp":"2025-02-19T12:55:24.061Z"}
+{"channel_id":"019518ef-cdb6-7fc4-9c70-e5d4cb647737","level":"info","message":"Received request body:","return_url":"https://ping.telex.im/v1/webhooks/019518ef-cdb6-7fc4-9c70-e5d4cb647737","settings":[{"default":"https://api.openweathermap.org/data/2.5/weather?q=London&appid=3e998ff8b6cb62dac052c8ef0b974ab9","label":"API Endpoint","type":"text"},{"default":"3e998ff8b6cb62dac052c8ef0b974ab9","label":"API Key","type":"text"},{"default":1000,"label":"Rate Limit","type":"number"}],"timestamp":"2025-02-19T12:55:25.943Z"}
+{"level":"info","message":"API Endpoint:","timestamp":"2025-02-19T12:55:25.944Z"}
+{"level":"info","message":"API Key:","timestamp":"2025-02-19T12:55:25.944Z"}
+{"level":"info","message":"Rate Limit:","timestamp":"2025-02-19T12:55:25.945Z"}
+{"level":"info","message":"Fetched API usage:","timestamp":"2025-02-19T12:55:25.966Z"}
+{"level":"info","message":"Remaining usage:","timestamp":"2025-02-19T12:55:25.966Z"}
+{"event_name":"API Rate Limit Check","level":"info","message":"Prepared payload to send to Telex: API Usage: 1/1000. Remaining: 999.","status":"success","timestamp":"2025-02-19T12:55:25.967Z","username":"API Rate Limiter Monitor"}
+{"level":"info","message":"Sending to return_url:","timestamp":"2025-02-19T12:55:25.967Z"}
+{"level":"info","message":"Telex response: request received","status":"success","status_code":202,"task_id":"1a36d234-2bee-4043-a719-1a5c283e751d","timestamp":"2025-02-19T12:55:26.012Z"}
+{"channel_id":"019518ef-cdb6-7fc4-9c70-e5d4cb647737","level":"info","message":"Received request body:","return_url":"https://ping.telex.im/v1/webhooks/019518ef-cdb6-7fc4-9c70-e5d4cb647737","settings":[{"default":"https://api.openweathermap.org/data/2.5/weather?q=London&appid=3e998ff8b6cb62dac052c8ef0b974ab9","label":"API Endpoint","type":"text"},{"default":"3e998ff8b6cb62dac052c8ef0b974ab9","label":"API Key","type":"text"},{"default":1000,"label":"Rate Limit","type":"number"}],"timestamp":"2025-02-19T12:55:29.059Z"}
+{"level":"info","message":"API Endpoint:","timestamp":"2025-02-19T12:55:29.060Z"}
+{"level":"info","message":"API Key:","timestamp":"2025-02-19T12:55:29.060Z"}
+{"level":"info","message":"Rate Limit:","timestamp":"2025-02-19T12:55:29.060Z"}
+{"level":"info","message":"Fetched API usage:","timestamp":"2025-02-19T12:55:29.086Z"}
+{"level":"info","message":"Remaining usage:","timestamp":"2025-02-19T12:55:29.088Z"}
+{"event_name":"API Rate Limit Check","level":"info","message":"Prepared payload to send to Telex: API Usage: 1/1000. Remaining: 999.","status":"success","timestamp":"2025-02-19T12:55:29.089Z","username":"API Rate Limiter Monitor"}
+{"level":"info","message":"Sending to return_url:","timestamp":"2025-02-19T12:55:29.090Z"}
+{"level":"info","message":"Telex response: request received","status":"success","status_code":202,"task_id":"0454d039-db66-41bf-bad4-90d797718370","timestamp":"2025-02-19T12:55:29.137Z"}
