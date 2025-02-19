@@ -1,26 +1,52 @@
+// src/service/apiService.js
 const axios = require('axios');
+const logger = require('../utils/logger');
 
-const fetchApiUsage = async (endpoint) => {
+// Function to fetch the API usage from the weather API (or any API that provides rate limit details)
+const fetchApiUsage = async (apiEndpoint, apiKey) => {
   try {
-    // Fetch weather data from OpenWeather API
-    const response = await axios.get(endpoint);
+    const response = await axios.get(apiEndpoint, {
+      params: { appid: apiKey },
+    });
 
-    // If rate limit exceeded, OpenWeather will return a 429 status
-    if (response.status === 429) {
-      const resetTime = response.headers['x-ratelimit-reset']; // Reset time in Unix timestamp
-      throw new Error(
-        `Rate limit exceeded. Try again after ${new Date(
-          resetTime * 1000
-        ).toISOString()}`
-      );
-    }
+    // Simulate getting rate limit usage (modify based on actual API)
+    const remainingUsage = response.headers['x-ratelimit-remaining'];
+    const totalUsage = response.headers['x-ratelimit-limit'];
 
-    // Assuming successful API response; we set usage to 1 as a placeholder (no actual usage data)
-    return 1; // This can be adjusted based on how you want to track usage
+    logger.info(
+      `Fetched API usage - Remaining: ${remainingUsage}, Total: ${totalUsage}`
+    );
+
+    return {
+      remaining: remainingUsage,
+      total: totalUsage,
+    };
   } catch (error) {
-    console.error('Error fetching API usage:', error.message);
-    throw new Error('Failed to fetch API usage');
+    logger.error(`Error fetching API usage: ${error.message}`);
+    return {
+      remaining: 0,
+      total: 0,
+    };
   }
 };
 
-module.exports = { fetchApiUsage };
+// Function to prepare and send the data to Telex
+const sendToTelex = async (returnUrl, usage, rateLimit) => {
+  const message = `API Usage: ${usage.remaining}/${rateLimit}. Remaining: ${usage.remaining}.`;
+
+  const data = {
+    message: message,
+    event_name: 'API Rate Limit Check',
+    username: 'API Rate Limiter Monitor',
+    status: 'success',
+  };
+
+  try {
+    const response = await axios.post(returnUrl, data);
+    logger.info(`Telex response: ${response.statusText}`);
+  } catch (error) {
+    logger.error(`Error sending data to Telex: ${error.message}`);
+  }
+};
+
+module.exports = { fetchApiUsage, sendToTelex };
