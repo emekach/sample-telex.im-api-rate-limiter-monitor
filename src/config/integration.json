@@ -11,7 +11,7 @@
       "app_url": "https://sample-telex-api-rate-limiter-monitor.onrender.com/",
       "background_color": "#FFFFFF"
     },
-    "integration_category": "Application Insight",
+    "integration_category": "Monitoring & Logging",
     "integration_type": "interval",
     "is_active": false,
     "output": [
