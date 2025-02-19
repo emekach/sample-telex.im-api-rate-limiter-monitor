@@ -1,22 +1,25 @@
 const axios = require('axios');
 
-const fetchApiUsage = async (endpoint, apiKey) => {
+const fetchApiUsage = async (endpoint) => {
   try {
-    const response = await axios.get(endpoint, {
-      headers: { Authorization: `Bearer ${apiKey}` }
-    });
+    // Fetch weather data from OpenWeather API
+    const response = await axios.get(endpoint);
 
-    const usage = parseInt(response.headers['x-rate-limit-usage'], 10);
-
-    if (isNaN(usage)) {
-      throw new Error('Invalid or missing "x-rate-limit-usage" header.');
+    // If rate limit exceeded, OpenWeather will return a 429 status
+    if (response.status === 429) {
+      const resetTime = response.headers['x-ratelimit-reset']; // Reset time in Unix timestamp
+      throw new Error(
+        `Rate limit exceeded. Try again after ${new Date(
+          resetTime * 1000
+        ).toISOString()}`
+      );
     }
 
-    return usage;
+    // Assuming successful API response; we set usage to 1 as a placeholder (no actual usage data)
+    return 1; // This can be adjusted based on how you want to track usage
   } catch (error) {
-    // Handle axios-specific errors (e.g., network issues, API down, etc.)
     console.error('Error fetching API usage:', error.message);
-    throw new Error('Failed to fetch API usage. Please check the API endpoint and API key.');
+    throw new Error('Failed to fetch API usage');
   }
 };
 

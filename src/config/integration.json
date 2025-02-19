@@ -38,36 +38,22 @@
         "default": "* * * * *"
       },
       {
-        "label": "Key",
+        "label": "API Endpoint",
         "type": "text",
         "required": true,
-        "default": "1234567890"
+        "default": "https://api.openweathermap.org/data/2.5/weather?q=London&appid=3e998ff8b6cb62dac052c8ef0b974ab9"
       },
       {
-        "label": "Do you want to continue",
-        "type": "checkbox",
+        "label": "API Key",
+        "type": "text",
         "required": true,
-        "default": "Yes"
+        "default": "3e998ff8b6cb62dac052c8ef0b974ab9"
       },
       {
-        "label": "Provide Speed",
+        "label": "Rate Limit",
         "type": "number",
         "required": true,
         "default": 1000
-      },
-      {
-        "label": "Sensitivity Level",
-        "type": "dropdown",
-        "required": true,
-        "default": "Low",
-        "options": ["High", "Low"]
-      },
-      {
-        "label": "Alert Admin",
-        "type": "multi-checkbox",
-        "required": true,
-        "default": "Super-Admin",
-        "options": ["Super-Admin", "Admin", "Manager", "Developer"]
       }
     ],
     "tick_url": "https://sample-telex-api-rate-limiter-monitor.onrender.com/tick",
