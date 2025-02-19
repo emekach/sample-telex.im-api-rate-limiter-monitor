@@ -1,11 +1,6 @@
 const { createLogger, format, transports } = require('winston');
-const winston = require('winston');
-const path = require('path');
+const DailyRotateFile = require('winston-daily-rotate-file');
 
-// Define log file path
-const logFilePath = path.join(__dirname, '..', 'logs', 'app.log');
-
-// Set up logger
 const logger = createLogger({
   level: process.env.LOG_LEVEL || 'info',
   format: format.combine(
@@ -15,17 +10,14 @@ const logger = createLogger({
     )
   ),
   transports: [
-    // Console transport
     new transports.Console(),
-
-    // File transport with log rotation (daily)
-    new winston.transports.DailyRotateFile({
-      filename: logFilePath,
+    new DailyRotateFile({
+      filename: 'logs/%DATE%-result.log',
       datePattern: 'YYYY-MM-DD',
       zippedArchive: true,
-      maxSize: '20m', // max size before rotation (e.g., 20MB)
-      maxFiles: '14d', // keep logs for the last 14 days
-    }),
+      maxSize: '20m',
+      maxFiles: '14d'
+    })
   ],
 });
 
