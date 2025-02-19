@@ -1,40 +1,76 @@
 {
   "data": {
-    "descriptions": {
-      "app_name": "API Rate Limiter Monitor",
-      "app_description": "Tracks API usage against rate limits and flags potential throttling risks.",
-      "app_url": "https://sample-telex-api-rate-limiter-monitor.onrender.com/",
-      "app_logo": "https://example.com/logo.png",
-      "background_color": "#ffffff"
+    "date": {
+      "created_at": "2025-02-19",
+      "updated_at": "2025-02-19"
     },
-    "integration_type": "interval",
+    "descriptions": {
+      "app_description": "Tracks API usage against rate limits and flags potential throttling risks.",
+      "app_logo": "https://example.com/logo.png",
+      "app_name": "API Rate Limiter Monitor",
+      "app_url": "https://sample-telex-api-rate-limiter-monitor.onrender.com/",
+      "background_color": "#FFFFFF"
+    },
     "integration_category": "Application Insight",
+    "integration_type": "interval",
+    "is_active": false,
+    "output": [
+      { "label": "output_channel_1", "value": true },
+      { "label": "output_channel_2", "value": false }
+    ],
+    "key_features": [
+      "Monitors API rate limits.",
+      "Identifies potential throttling risks.",
+      "Provides configurable alert levels.",
+      "Integrates seamlessly with Telex."
+    ],
+    "permissions": {
+      "monitoring_user": {
+        "always_online": true,
+        "display_name": "Rate Limit Monitor"
+      }
+    },
     "settings": [
       {
-        "label": "API Endpoint",
+        "label": "interval",
         "type": "text",
         "required": true,
-        "default": "https://api.spacexdata.com/v4/launches"
+        "default": "* * * * *"
       },
       {
-        "label": "API Key",
+        "label": "Key",
         "type": "text",
         "required": true,
-        "default": ""
+        "default": "1234567890"
       },
       {
-        "label": "Rate Limit",
+        "label": "Do you want to continue",
+        "type": "checkbox",
+        "required": true,
+        "default": "Yes"
+      },
+      {
+        "label": "Provide Speed",
         "type": "number",
         "required": true,
         "default": 1000
       },
       {
-        "label": "Interval",
-        "type": "text",
+        "label": "Sensitivity Level",
+        "type": "dropdown",
         "required": true,
-        "default": "*/5 * * * *"
+        "default": "Low",
+        "options": ["High", "Low"]
+      },
+      {
+        "label": "Alert Admin",
+        "type": "multi-checkbox",
+        "required": true,
+        "default": "Super-Admin",
+        "options": ["Super-Admin", "Admin", "Manager", "Developer"]
       }
     ],
-    "tick_url": "https://sample-telex-api-rate-limiter-monitor.onrender.com/tick"
+    "tick_url": "https://sample-telex-api-rate-limiter-monitor.onrender.com/tick",
+    "target_url": ""
   }
 }
